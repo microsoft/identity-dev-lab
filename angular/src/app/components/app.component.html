@@ -1,0 +1,18 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">MSAL Angular Lab</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a [routerLink]="['home']">Home</a></li>
+      <li><a [routerLink]="['contacts']">Contacts</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a *ngIf="authService.loggedIn" [routerLink]="['claims']">{{ authService.user.name }}</a></li>
+      <li><a *ngIf="!authService.loggedIn" (click)="authService.login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a *ngIf="authService.loggedIn" (click)="authService.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+<router-outlet *ngIf="!authService.isIframe"></router-outlet>

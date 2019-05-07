@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<title>Secure Page</title>
+	</head>
+	<body>
+		<h1>
+			<span th:text="'Hello ' + ${userName}"></span>
+		</h1>
+		<div>
+			<h2>AAD Access Token</h2>
+			<p>This token can be used to access the Microsoft Graph API</p>
+			<p>
+				<span th:text="${accessToken}"></span>
+			</p>
+		</div>
+		<div>
+			<h2>OIDC ID Token</h2>
+			<p>This token identifies the authenticated user</p>
+			<p>
+				<span th:text="${idToken}"></span>
+			</p>
+		</div>
+		<div>
+			<h2>User Claims</h2>
+			<ul>
+				<li th:each="claim : ${claims}">
+					<span style="font-weight:bold" th:text="${claim.key}"></span>:
+					<span th:text="${claim.value}"></span>
+				</li>
+			</ul>
+		</div>
+		<form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form>
+	</body>
+</html>

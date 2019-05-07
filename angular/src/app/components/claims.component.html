@@ -1,0 +1,18 @@
+<div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">User Claims</div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th width="30%">Claim</th>
+                        <th width="70%">Value</th>
+                    </tr>
+                    <tr *ngFor="let claim of claims | keyvalue">
+                        <td>{{ claim.key }}</td>
+                        <td>{{ claim.value }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    

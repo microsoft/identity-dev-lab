@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Contacts</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="well">
+            This page demonstrate the use of calling a simple web API. This web api is hosted on azure and maintains your contact list.
+            Please add some text in the texbox and click "Add". This will invoke the web api.
+            <p>{{loadingMessage}}</p>
+          </div>
+          <form #userForm="ngForm" novalidate (ngSubmit)="add(userForm);">
+            <input type="hidden" name="editContactIdValue" id="editContactId" [(ngModel)]="editContactId" #editContactNameValue="ngModel">
+            <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="newContactName">Name</label>
+                  <input name="newContactNameText" id="newContactName" [(ngModel)]="newContactName" required
+                          #newContactNameText="ngModel" class="form-control">
+                  <label for="newContactEmail">Email</label>
+                  <input name="newContactEmailText" id="newContactEmail" [(ngModel)]="newContactEmail" required
+                  #newContactEmailText="ngModel" class="form-control">
+              </div>
+              <button class="btn btn-primary" [disabled]="!userForm.valid">{{formAction}}</button>
+              <input type="button" class="btn btn-warning" *ngIf="editContactId.length>0" (click)="delete(userForm)" value="Delete">
+              <input type="button" class="btn btn-default" *ngIf="userForm.valid" (click)="reset(userForm)" value="Cancel">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class='table-responsive'>
+            <table class='table table-striped'>
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="data" *ngFor="let contact of Contacts" (click)="edit(contact)">
+                <td>{{contact?.Name}}</td>
+                <td>{{contact?.EmailAddress}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

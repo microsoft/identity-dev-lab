@@ -1,0 +1,9 @@
+table.table {
+    width:100%;
+}
+table.table tr td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width:0;
+}

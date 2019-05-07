@@ -1,0 +1,74 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Http
+@model IRequestCookieCollection
+
+@{
+    ViewBag.Title = "Claims";
+    var region = System.Environment.GetEnvironmentVariable("REGION_NAME") ?? "N/A";
+}
+
+<div class="panel panel-primary" style="margin-top:10px;position:relative;">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+    <div class="panel-body">
+        <div class="col-sm-12">
+            Current host region: @region
+        </div>
+        <div class="col-sm-12">
+            <h4>Claims Present in the Claims Identity</h4>
+            <table class="table-hover table-striped claim-table">
+                <tr>
+                    <th class="claim-type claim-data claim-head">Claim Type</th>
+                    <th class="claim-data claim-head">Claim Value</th>
+                </tr>
+                @foreach (Claim claim in User.Claims)
+                {
+                    <tr>
+                        <td class="claim-type claim-data">@claim.Type</td>
+                        <td class="claim-data">@claim.Value</td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="col-sm-12">
+            <h4>Cookie variables</h4>
+            <table class="table-hover table-striped claim-table">
+                <tr>
+                    <th class="claim-type claim-data claim-head">Name</th>
+                    <th class="claim-data claim-head">Value</th>
+                </tr>
+                @foreach (KeyValuePair<string,string> cookie in Model)
+                {
+                    <tr>
+                        <td class="claim-type claim-data">@cookie.Key</td>
+                        <td class="claim-data">@cookie.Value</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+@section styles {
+    <style type="text/css">
+        div.panel-body td:not(.claim-type) {
+            word-break: break-all;
+            padding: 3px;
+        }
+
+        .col-sm-12 h4 {
+            border-top: 2px solid #9a9a9a;
+            margin-top: 14px;
+            padding-top: 10px;
+        }
+
+        table {
+            border: 1px solid #dddddd;
+        }
+
+        th, td {
+            padding: 3px;
+        }
+    </style>
+}

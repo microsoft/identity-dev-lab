@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.example</groupId>
+	<artifactId>SpringAADDemo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>SpringAADDemo</name>
+	<description>Demo project for Spring MVC and Azure Active Directory</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<maven.test.skip>true</maven.test.skip>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		
+        <java.version>1.8</java.version>
+		
+		<jar.finalName>app</jar.finalName>
+		
+		<RESOURCEGROUP_NAME>YOUR_RG_NAME</RESOURCEGROUP_NAME>
+		<WEBAPP_NAME>YOUR_WEBAPP_NAME</WEBAPP_NAME>
+		<SLOT_NAME>YOUR_SLOT_NAME</SLOT_NAME>
+		<APP_SERVICE_PLAN_NAME>YOUR_APP_PLAN_NAME</APP_SERVICE_PLAN_NAME>
+		<REGION>YOUR_AZURE_REGION</REGION>	<!-- for example: westus, eastus -->
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- Used to sign-in to AAD -->
+		<dependency>
+		   <groupId>org.springframework.security</groupId>
+		   <artifactId>spring-security-oauth2-client</artifactId>
+		</dependency>
+		
+		<!-- Used to provide authentication for OAuth2 flows -->
+		<dependency>
+		   <groupId>org.springframework.security</groupId>
+		   <artifactId>spring-security-oauth2-jose</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<finalName>${jar.finalName}</finalName>                  
+				</configuration>
+			</plugin>      			
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>1.5.0</version>
+				<configuration>
+					<deploymentType>jar</deploymentType>
+
+					<!-- configure app to run on port 80, required by App Service -->
+					<appSettings>
+						<property> 
+							<name>JAVA_OPTS</name> 
+							<value>-Dserver.port=80</value> 
+						</property> 
+					</appSettings>
+					
+				   <!-- Deploy Web App to the existing App Service Plan -->
+				   <appServicePlanResourceGroup>${RESOURCEGROUP_NAME}</appServicePlanResourceGroup>
+				   <appServicePlanName>${APP_SERVICE_PLAN_NAME}</appServicePlanName>
+
+					<!-- Web App information -->
+					<resourceGroup>${RESOURCEGROUP_NAME}</resourceGroup>
+					<appName>${WEBAPP_NAME}</appName>
+					<region>${REGION}</region>  
+					
+                    <!-- Deployment Slot Setting -->
+					<!--
+					<deploymentSlotSetting>
+						<name>${SLOT_NAME}</name>
+						<configurationSource>parent</configurationSource>
+					</deploymentSlotSetting>
+					-->
+					
+					<!-- Java Runtime Stack for Web App on Linux -->
+					<linuxRuntime>jre8</linuxRuntime>
+					<runtime>
+						<os>Linux</os>
+						<javaVersion>jre8</javaVersion>
+					</runtime>
+				</configuration>
+			</plugin>				
+		</plugins>
+	</build>
+
+</project>

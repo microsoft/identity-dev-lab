@@ -1,0 +1,31 @@
+
+server:
+  port: 80
+  
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+#    org.springframework.boot.autoconfigure: DEBUG
+  
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          azure:
+            client-id: <client id>
+            client-secret: <client secret>
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: openid, https://graph.microsoft.com/user.read
+            client-name: Azure
+        provider:
+          azure:
+            authorization-uri: https://login.microsoftonline.com/<AD tenant>/oauth2/authorize
+            token-uri: https://login.microsoftonline.com/<AD tenant>/oauth2/token
+            user-info-uri: https://login.microsoftonline.com/<AD tenant>/openid/userinfo
+            user-name-attribute: sub
+            jwk-set-uri: https://login.microsoftonline.com/<AD tenant>/discovery/keys

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<title>Spring Security + Azure Active Directory</title>
+	</head>
+	<body>
+		<h1>Spring Security + Azure Active Directory Sample</h1>
+		<p>This small sample site demonstrates user log in using Azure Active 
+		Directory as an identity provider and spring-security-oauth2-client
+		as an authentication client.</p>
+		<p>This approach works because Azure Active Directory supports OAuth2
+		and OpenID Connect standard protocols.</p>
+		<p>This page can be access by anyone but the secure page linked below 
+		is restricted to authenticated users.</p>
+		<a href="/secure">Secure Page</a>		 
+	</body>
+</html>
