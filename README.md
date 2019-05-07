@@ -39,6 +39,8 @@ Sample code supporting an Azure AD development lab/training session. Platforms:
   * https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-endpoints
 * TestingSTS:
   * https://testingsts.azurewebsites.net/
+* PHP Sample:
+  * https://github.com/Azure-Samples/active-directory-php-graphapi-web
 
 ## Contributing
 
