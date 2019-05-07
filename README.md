@@ -34,6 +34,10 @@ Sample code supporting an Azure AD development lab/training session. Platforms:
     * Readme for each tech stack has links on getting started
     * Idea is to build an empty app in that stack then add AAD integration - use the sample code as a reference, don't just pull it and build
 
+## Notes
+* Azure Stack REST integration enpoints:
+  * https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-endpoints
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
