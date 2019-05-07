@@ -2,7 +2,7 @@
 
 Java Sample code for Active Directory Integration:
  * Spring-Boot: Use Spring Boot / Starter, Java App Server embedded
-   * Running sample at 
+   * Running sample at https://javalabdemo01.azurewebsites.net/
  * Java-Webapp: Regular Java Webapp, need standalone Java App Server to run
    * Running sample at https://javawebapp.azurewebsites.net
    * An additional Java sample is available at https://github.com/Microsoft/java-webapp-oidc-migrate-poc - this one fleshes out the Java Webapp sample with additional features. Sample running at https://aadjavademo.azurewebsites.net/.
