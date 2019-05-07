@@ -37,6 +37,8 @@ Sample code supporting an Azure AD development lab/training session. Platforms:
 ## Notes
 * Azure Stack REST integration enpoints:
   * https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-endpoints
+* TestingSTS:
+  * https://testingsts.azurewebsites.net/
 
 ## Contributing
 
