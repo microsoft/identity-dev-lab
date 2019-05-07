@@ -68,7 +68,7 @@ of the Azure Active Directory window respectively as *Name* and *Directory ID*
 
 ### Step 4:  Configure the sample to use your Azure AD tenant
 
-Open `application.yml` in the Spring-Boot/src/main/resources folder. Fill in with your tenant and app registration information noted in registration step. Replace <client id> with the app id, <client secret> with the app secret and <AD tenant> with the AD tenant ID or domain name.
+Open `application.yml` in the Spring-Boot/src/main/resources folder. Fill in with your tenant and app registration information noted in registration step. Replace '<client id>' with the app id, '<client secret>' with the app secret and '<AD tenant>' with the AD tenant ID or domain name.
 
 ### Step 5: Package and run it locally.
 
